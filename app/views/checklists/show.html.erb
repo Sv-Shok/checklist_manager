@@ -1,0 +1,6 @@
+<h2><%= @checklist.title %></h2>
+<p><%= @checklist.description %></p>
+
+<%= link_to "Back", root_path %>
+<%= link_to "Edit", edit_checklist_path(@checklist) %>
+<%= link_to "Delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" } %>
