@@ -14,6 +14,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'materialize-sass'
 gem 'simple_form'
+gem 'kaminari'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do

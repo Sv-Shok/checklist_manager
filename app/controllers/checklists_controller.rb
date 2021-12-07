@@ -2,7 +2,7 @@ class ChecklistsController < ApplicationController
   before_action :find_checklist, only: [:show, :edit, :update, :destroy]  
 
   def index
-    @checklists = Checklist.all.order("created_at DESC")
+    @checklists = Checklist.order(created_at: :desc).page(params[:page])
   end
 
   def show
