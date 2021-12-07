@@ -10,7 +10,7 @@
 
 ## Clone
 
-$ `git clone `
+$ `git clone git@github.com:Sv-Shok/checklist_manager.git`
 
 ## Setup
 
