@@ -1,3 +1,18 @@
 // Place all the styles related to the Checklists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.checklist {
+  .btnBox {
+    align-items: flex-end;
+  }
+  .mx3 {
+    margin: 3px;
+  }
+  .mr10{
+    margin: 10px;
+  }
+}
+
+.error-text{
+  color: red;    
+}
