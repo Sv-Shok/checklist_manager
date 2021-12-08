@@ -1,0 +1,13 @@
+.devise {
+    display: flex;
+    justify-content: center;
+  .box { 
+    padding: 30px;
+  }
+  .mb5 {
+    margin-bottom: 5px;
+  }
+  .input-field > label {
+      position: relative;
+  }
+}

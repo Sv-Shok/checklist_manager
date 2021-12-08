@@ -1,0 +1,13 @@
+<nav>
+  <div class="nav-wrapper grey darken-3">
+    <a href="/" class="brand-logo">ListManager</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <% if current_user.present? %>
+        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign In", new_user_session_path %></li>  
+      <% end %> 
+      <li><%= link_to "Sign Up", new_user_registration_path %></li> 
+    </ul>
+  </div>
+</nav>
