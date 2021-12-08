@@ -2,18 +2,20 @@ class ChecklistsController < ApplicationController
   before_action :find_checklist, only: [:show, :edit, :update, :destroy]  
 
   def index
-    @checklists = Checklist.order(created_at: :desc).page(params[:page])
+    if user_signed_in?
+      @checklists = current_user.checklists.order(created_at: :desc).page(params[:page])
+    end
   end
 
   def show
   end  
   
   def new
-    @checklist = Checklist.new
+    @checklist = current_user.checklists.build
   end
 
   def create
-    @checklist = Checklist.new(checklist_params)
+    @checklist = current_user.checklists.build(checklist_params)
     if @checklist.save
       redirect_to root_path
     else
