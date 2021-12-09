@@ -11,7 +11,8 @@
 #
 class Checklist < ApplicationRecord
   belongs_to :user
+  has_many :questions, dependent: :destroy
 
   validates :title, presence: true, length: { in: 4..40 }
-  validates :description, presence: true, length: { in: 4..40 }    
+  validates :description, presence: true, length: { in: 4..40 }
 end

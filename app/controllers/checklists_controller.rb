@@ -1,5 +1,4 @@
 class ChecklistsController < ApplicationController
-  before_action :find_checklist, only: [:show, :edit, :update, :destroy]  
 
   def index
     if user_signed_in?
@@ -8,6 +7,7 @@ class ChecklistsController < ApplicationController
   end
 
   def show
+    @questions = checklist.questions.order(created_at: :desc).page(params[:page])
   end  
   
   def new
@@ -24,10 +24,11 @@ class ChecklistsController < ApplicationController
   end
 
   def edit
+    checklist
   end
   
   def update
-    if @checklist.update(checklist_params)
+    if checklist.update(checklist_params)
       redirect_to checklist_path(@checklist)
     else
       render 'edit'
@@ -35,7 +36,7 @@ class ChecklistsController < ApplicationController
   end
   
   def destroy
-    @checklist.destroy
+    checklist.destroy
     redirect_to root_path
   end  
 
@@ -45,8 +46,8 @@ class ChecklistsController < ApplicationController
     params.require(:checklist).permit(:title, :description)
   end
   
-  def find_checklist
-    @checklist = Checklist.find(params[:id])
-  end  
+  def checklist
+   @checklist = current_user.checklists.find(params[:id])
+  end
 
 end

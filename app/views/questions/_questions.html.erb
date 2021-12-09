@@ -1,0 +1,20 @@
+<h1>Questions</h1>
+ <div class="card-panel">
+  <%=  simple_form_for checklist_questions_path(@checklist) do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.button :submit %>
+    <%= link_to "Back", root_path, class: "btn grey darken-2" %>
+  <% end %>
+</div>
+
+<% @questions.each do |question| %>
+  <h2><%= question.title %></h2>
+
+  <time datetime="<%= question.formated_created_at %>">
+    <%= question.formated_created_at %>
+  </time> 
+  <p>
+    <%= question.description%>
+  </p>
+<% end %>   

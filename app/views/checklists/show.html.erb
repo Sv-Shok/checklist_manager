@@ -2,5 +2,23 @@
 <p><%= @checklist.description %></p>
 
 <%= link_to "Back", root_path, class: "btn grey darken-2" %>
-<%= link_to "Edit", edit_checklist_path(@checklist), class: "btn orange accent-3" %>
-<%= link_to "Delete", checklist_path(@checklist), method: :delete, data: { confirm: "Are you sure?" }, class: "btn red darken-2" %>
+<%= link_to "Add Question", new_checklist_question_path(@checklist, @question), class: "btn orange accent-3" %>
+<h3>Questions</h3> 
+<% @questions.each do |question| %>
+  <%= link_to checklist_question_path(@checklist, question) do %>
+    <div class="card">
+          <div class="card-content row">
+            <div class="col s10 l11">
+              <span class="card-title black-text"><%= question.title %></span>
+              <span class="crad-text black-text"><%= question.description %></span>
+            </div>
+            <div class="col s2 l1">
+              <%= link_to checklist_question_path(@checklist, question),  method: :delete, data: { confirm: "Are you sure?" } do %>
+                <span class="btn-floating btn-large red"><i class="material-icons">delete</i></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+    <% end %>  
+<% end %>     
+<%= paginate @questions %> 

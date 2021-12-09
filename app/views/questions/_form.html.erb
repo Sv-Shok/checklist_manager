@@ -1,0 +1,8 @@
+<div class="card-panel">
+  <%=  simple_form_for [@checklist, @question] do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= link_to "Back", checklist_path(@checklist), class: "btn grey darken-2" %>
+    <%= f.button :submit %>
+  <% end %>
+</div>
