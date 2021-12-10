@@ -16,6 +16,7 @@ gem 'materialize-sass'
 gem 'simple_form'
 gem 'kaminari'
 gem 'devise'
+gem 'cocoon'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
