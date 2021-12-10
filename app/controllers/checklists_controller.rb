@@ -12,6 +12,7 @@ class ChecklistsController < ApplicationController
   
   def new
     @checklist = current_user.checklists.build
+    @checklist.questions.build
   end
 
   def create
@@ -42,7 +43,7 @@ class ChecklistsController < ApplicationController
   private
 
   def checklist_params
-    params.require(:checklist).permit(:title, :description)
+    params.require(:checklist).permit(:title, :description, questions_attributes: Question.attribute_names.map(&:to_sym).push(:_destroy))
   end
   
   def find_checklist
