@@ -8,6 +8,7 @@ class ChecklistsController < ApplicationController
   end
 
   def show
+    @questions = @checklist.questions.order(created_at: :desc).page(params[:page])
   end  
   
   def new
@@ -47,7 +48,7 @@ class ChecklistsController < ApplicationController
   end
   
   def find_checklist
-    @checklist = Checklist.find(params[:id])
+    @checklist = current_user.checklists.find(params[:id])
   end  
 
 end

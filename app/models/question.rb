@@ -18,8 +18,8 @@
 #  fk_rails_...  (checklist_id => checklists.id)
 #
 class Question < ApplicationRecord
-  validates :title, presence: true, length: { in: 12..40 }
-  validates :description, presence: true   
+  belongs_to :checklist, optional: true 
 
-  belongs_to :checklist, optional: true   
+  validates :title, presence: true, length: { in: 12..40 }
+  validates :description, presence: true     
 end
