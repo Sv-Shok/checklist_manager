@@ -1,2 +1,10 @@
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if notice %>
+  <script>
+   M.toast({html: '<%= notice %>'}, 4000);
+  </script>
+<% end %>
+<% if alert %>
+  <script>
+    M.toast({html:'<%= alert %>'}, 4000)
+  </script>
+<% end %>

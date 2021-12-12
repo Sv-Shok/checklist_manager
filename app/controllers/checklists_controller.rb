@@ -19,6 +19,7 @@ class ChecklistsController < ApplicationController
   def create
     @checklist = current_user.checklists.build(checklist_params)
     if @checklist.save
+      flash[:notice] = "Checklist has been created"
       redirect_to root_path
     else
       render 'new'
@@ -30,6 +31,7 @@ class ChecklistsController < ApplicationController
   
   def update
     if @checklist.update(checklist_params)
+      flash[:notice] = "Checklist has been updated"
       redirect_to checklist_path(@checklist)
     else
       render 'edit'
@@ -38,6 +40,7 @@ class ChecklistsController < ApplicationController
   
   def destroy
     @checklist.destroy
+    flash[:notice] = "Checklist has been deleted"
     redirect_to root_path
   end  
 
