@@ -1,25 +1,22 @@
 # == Schema Information
 #
-# Table name: questions
+# Table name: audits
 #
 #  id           :bigint           not null, primary key
-#  answer       :integer
-#  description  :text
-#  title        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  checklist_id :bigint
 #
 # Indexes
 #
-#  index_questions_on_checklist_id  (checklist_id)
+#  index_audits_on_checklist_id  (checklist_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (checklist_id => checklists.id)
 #
-require 'rails_helper'
-
-RSpec.describe Question, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+class Audit < ApplicationRecord
+  belongs_to :checklist
+  has_many :questions
+  accepts_nested_attributes_for :questions  
 end

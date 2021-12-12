@@ -47,7 +47,7 @@ class ChecklistsController < ApplicationController
   end
   
   def find_checklist
-    @checklist = Checklist.find(params[:id])
+    @checklist = current_user.checklists.find(params[:id])
   end  
 
 end

@@ -1,18 +1,15 @@
 # == Schema Information
 #
-# Table name: questions
+# Table name: audits
 #
 #  id           :bigint           not null, primary key
-#  answer       :integer
-#  description  :text
-#  title        :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  checklist_id :bigint
 #
 # Indexes
 #
-#  index_questions_on_checklist_id  (checklist_id)
+#  index_audits_on_checklist_id  (checklist_id)
 #
 # Foreign Keys
 #
@@ -20,6 +17,6 @@
 #
 require 'rails_helper'
 
-RSpec.describe Question, type: :model do
+RSpec.describe Audit, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
