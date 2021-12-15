@@ -6,6 +6,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  checklist_id :bigint
+#  user_id      :integer
 #
 # Indexes
 #

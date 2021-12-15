@@ -13,6 +13,8 @@ class ChecklistsController < ApplicationController
   def new
     @checklist = current_user.checklists.build
     @checklist.questions.build
+    # @checklist.questions.build(attributes = {title: 'dsdsdsd', description: 'sdfsffsf'})
+  end
   end
 
   def create

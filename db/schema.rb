@@ -10,15 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_11_185536) do
+ActiveRecord::Schema.define(version: 2021_12_14_161805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.bigint "audit_id"
+    t.bigint "question_id"
+    t.integer "answer_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["audit_id"], name: "index_answers_on_audit_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
 
   create_table "audits", force: :cascade do |t|
     t.bigint "checklist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["checklist_id"], name: "index_audits_on_checklist_id"
   end
 
@@ -52,6 +63,8 @@ ActiveRecord::Schema.define(version: 2021_12_11_185536) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answers", "audits"
+  add_foreign_key "answers", "questions"
   add_foreign_key "audits", "checklists"
   add_foreign_key "questions", "checklists"
 end

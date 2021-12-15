@@ -6,6 +6,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  checklist_id :bigint
+#  user_id      :integer
 #
 # Indexes
 #
@@ -16,7 +17,10 @@
 #  fk_rails_...  (checklist_id => checklists.id)
 #
 class Audit < ApplicationRecord
+  belongs_to :user
   belongs_to :checklist
-  has_many :questions
-  accepts_nested_attributes_for :questions  
+  
+  has_many :answers, dependent: :destroy
+
+  accepts_nested_attributes_for :answers, allow_destroy: true, reject_if: :all_blank 
 end

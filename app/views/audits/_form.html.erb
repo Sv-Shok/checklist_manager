@@ -1,15 +1,16 @@
 <div class="card-panel">
   <%= @audit.inspect%>
    <%= @questions.inspect%>
+    <%=  @audit.answers.inspect%>
   <%=  simple_form_for @audit do |f| %>
     <div class="form-actions">
       <%= link_to "Back", root_path, class: "btn grey darken-2" %>
       <%= f.button :submit %>
     </div>
   
-    <div class="questions">
-      <h4>Questions</h4>
-      <%= f.simple_fields_for :@questions do |builder| %>
+    <div class="answers">
+      <h4>Answers</h4>
+      <%= f.simple_fields_for :answers do |builder| %>
       <%= render 'audit_fields', f: builder %>
     <% end %>  
     <div>
