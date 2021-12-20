@@ -13,7 +13,7 @@
           <%# <%= render 'answer_fields', f: builder %>
           <div class="card-panel row nested-fields">
             <div class="input-field col s12">
-              <div class="col s9 l11"><%= builder.select :answer_status, Answer::answer_statuses.keys %></div>
+              <div class="col s9 l11"><%= builder.select :answer_status, Answer::answer_statuses.keys, selected: 3 %></div>
             </div>
           </div>
           <% end %>

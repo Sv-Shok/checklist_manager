@@ -10,7 +10,6 @@ class AuditsController < ApplicationController
     @questions = current_user.checklists.find(checklist_id).questions
     @audit = current_user.audits.build(attributes = {checklist_id: checklist_id})
     @audit.answers.build
-    byebug
   end
 
   def create
@@ -28,7 +27,6 @@ class AuditsController < ApplicationController
   end
   
   def update
-    byebug
     if @audit.update(audit_params_update)
       redirect_to audits_path
     else

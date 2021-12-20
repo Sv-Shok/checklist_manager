@@ -19,6 +19,7 @@
 //= require cocoon
 //= require_tree .
 
-$(document).ready(function(){
-    $('select').formSelect();
-  }); 
+$(document).on('turbolinks:load', function() {
+    console.log('(document).turbolinks:load')
+    $('select').formSelect()
+});
