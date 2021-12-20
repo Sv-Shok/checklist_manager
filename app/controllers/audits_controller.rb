@@ -15,6 +15,7 @@ class AuditsController < ApplicationController
   def create
     @audit = current_user.audits.build(audit_params)
     if @audit.save
+      flash[:notice] = "Audit has been created"
       redirect_to root_path
     else
       puts @audit.errors.full_messages
@@ -28,6 +29,7 @@ class AuditsController < ApplicationController
   
   def update
     if @audit.update(audit_params_update)
+      flash[:notice] = "Audit has been updated"
       redirect_to audits_path
     else
       render 'edit'
@@ -36,6 +38,7 @@ class AuditsController < ApplicationController
   
   def destroy
     @audit.destroy
+    flash[:notice] = "Audit has been deleted"
     redirect_to audits_path
   end
   
