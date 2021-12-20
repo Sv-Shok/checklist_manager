@@ -1,0 +1,14 @@
+<%=  simple_form_for choice_checklist_audits_path, remote: true, class: "checklist_select" do |f| %>
+  <div class="modal-content">
+    <h4>Select checklist</h4>
+    <div class="form-actions">
+      <div class="input-field col s12">
+        <%= f.collection_select :id, @checklists.order(:title), :id, :title, include_blank: true %>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Back", audits_path, class: "modal-close btn grey darken-2" %>
+        <%= f.button :submit, 'Submit', class:"modal-close" %>
+      </div>
+    </div>
+  </div>
+<% end %>

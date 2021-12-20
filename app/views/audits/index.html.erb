@@ -1,6 +1,33 @@
 <h3 class="center">AuditList</h3>
 <div>
-  <%= link_to new_audit_path do %>
-    <span class="btn-small mr10"><i class="material-icons right">add</i>New Audit</span>
+  <%= link_to choice_checklist_audits_path, data: { bs_toggle: "modal", bs_target: "checklist_select", remote: true }, class: "waves-effect waves-light btn modal-trigger" do %>
+    <span><i class="material-icons right">add</i>New Audit</span>
   <% end %>
 <div>
+<% @audits.each do |audit| %>
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title"><%= audit.checklist.title %></div>
+      <div class="card-text"><%= audit.updated_at %></div>
+      <%= link_to edit_audit_url(audit) do %>
+        <span class="btn-floating btn-large cyan mx3"><i class="material-icons">edit</i></span>
+      <% end %>
+      <%= link_to audit_path(audit),  method: :delete, data: { confirm: "Are you sure?" } do %>
+        <span class="btn-floating btn-large red mx3"><i class="material-icons">delete</i></span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= paginate @audits %>  
+
+<!-- Modal -->
+<div id="checklist_select" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <p>A bunch of text</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>

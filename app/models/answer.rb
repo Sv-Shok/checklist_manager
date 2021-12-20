@@ -21,5 +21,9 @@
 #
 class Answer < ApplicationRecord
   belongs_to :audit, optional: true 
-  belongs_to :question, optional: true      
+  belongs_to :question
+  
+  enum answer_status: [:yes, :no, :'n/a']
+
+  validates :answer_status, inclusion: { in: Answer.answer_statuses }
 end

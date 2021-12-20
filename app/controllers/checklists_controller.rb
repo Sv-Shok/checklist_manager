@@ -8,18 +8,18 @@ class ChecklistsController < ApplicationController
   end
 
   def show
+    @questions = @checklist.questions.order(created_at: :desc).page(params[:page])
   end  
   
   def new
     @checklist = current_user.checklists.build
     @checklist.questions.build
-    # @checklist.questions.build(attributes = {title: 'dsdsdsd', description: 'sdfsffsf'})
-  end
   end
 
   def create
     @checklist = current_user.checklists.build(checklist_params)
     if @checklist.save
+      flash[:notice] = "Checklist has been created"
       redirect_to root_path
     else
       render 'new'
@@ -30,7 +30,9 @@ class ChecklistsController < ApplicationController
   end
   
   def update
+    byebug
     if @checklist.update(checklist_params)
+      flash[:notice] = "Checklist has been updated"
       redirect_to checklist_path(@checklist)
     else
       render 'edit'
@@ -39,6 +41,7 @@ class ChecklistsController < ApplicationController
   
   def destroy
     @checklist.destroy
+    flash[:notice] = "Checklist has been deleted"
     redirect_to root_path
   end  
 

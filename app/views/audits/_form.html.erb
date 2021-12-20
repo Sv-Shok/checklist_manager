@@ -1,18 +1,22 @@
 <div class="card-panel">
-  <%= @audit.inspect%>
-   <%= @questions.inspect%>
-    <%=  @audit.answers.inspect%>
   <%=  simple_form_for @audit do |f| %>
     <div class="form-actions">
       <%= link_to "Back", root_path, class: "btn grey darken-2" %>
       <%= f.button :submit %>
-    </div>
-  
-    <div class="answers">
-      <h4>Answers</h4>
-      <%= f.simple_fields_for :answers do |builder| %>
-      <%= render 'audit_fields', f: builder %>
-    <% end %>  
-    <div>
+    </div>  
+    <% @questions.each do |question| %>
+          <%= question.title %>
+          <%= question.description %>   
+        <%= f.simple_fields_for :answers do |builder| %>
+        
+          <%= builder.input :question_id, :as => :hidden, :input_html => { value: question.id }%>
+          <%# <%= render 'answer_fields', f: builder %>
+          <div class="card-panel row nested-fields">
+            <div class="input-field col s12">
+              <div class="col s9 l11"><%= builder.select :answer_status, Answer::answer_statuses.keys %></div>
+            </div>
+          </div>
+          <% end %>
+      <% end %>   
   <% end %>
 </div>

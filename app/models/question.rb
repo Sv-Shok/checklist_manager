@@ -20,7 +20,8 @@
 #
 class Question < ApplicationRecord
   belongs_to :checklist, optional: true 
-  belongs_to :audit, optional: true   
+  belongs_to :audit, optional: true
+  has_many :answers, dependent: :destroy   
   
   validates :title, presence: true, length: { in: 12..40 }
   validates :description, presence: true   

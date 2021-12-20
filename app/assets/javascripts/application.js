@@ -18,3 +18,7 @@
 //= require turbolinks
 //= require cocoon
 //= require_tree .
+
+$(document).ready(function(){
+    $('select').formSelect();
+  }); 

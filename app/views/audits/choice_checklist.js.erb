@@ -1,0 +1,16 @@
+async function mod(){
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+};
+mod().then(() => {
+   $(document).ready(function(){
+    $('select').formSelect();
+  });  
+})
+
+
+
+
+document.querySelector('#checklist_select').innerHTML = "<%= j(render 'audits/choice_checklist')%>"
+$("#checklist_select").modal('open')

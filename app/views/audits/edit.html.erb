@@ -1,0 +1,19 @@
+<h1>Edit Audit Item</h1>
+
+<div class="card-panel">
+  <%=  simple_form_for @audit do |f| %>
+    <div class="form-actions">
+      <%= link_to "Back", audits_path, class: "btn grey darken-2" %>
+      <%= f.button :submit %>
+    </div> 
+        <%= f.simple_fields_for :answers do |builder| %>
+        <% question = getQuestion(@questions, builder.object.question_id) %>
+        <%= question.title %>
+        <%= question.description %>
+        <%= builder.input :question_id, :as => :hidden %>
+        <div class="card-panel row nested-fields">
+          <div class="col s9 l11"><%= builder.select :answer_status, Answer::answer_statuses.keys %></div>
+        </div>
+          <% end %>  
+  <% end %>
+</div
