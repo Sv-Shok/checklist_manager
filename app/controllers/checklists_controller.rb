@@ -33,7 +33,7 @@ class ChecklistsController < ApplicationController
     byebug
     if @checklist.update(checklist_params)
       flash[:notice] = "Checklist has been updated"
-      redirect_to checklist_path(@checklist)
+      redirect_to checklists_path
     else
       render 'edit'
     end          

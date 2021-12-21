@@ -1,19 +1,29 @@
-<h1>Edit Audit Item</h1>
-
+<h4 class='center'>Edit Audit</h4>
 <div class="card-panel">
-  <%=  simple_form_for @audit do |f| %>
+  <h5><%= "checlist: #{@checlist.title}" %></h5>
+  <hr>
+  <h5 class="center">Questions</h5>
+  <%= simple_form_for @audit do |f| %>
+    
+      <%= f.simple_fields_for :answers do |builder| %>
+        <% question = getQuestion(@questions, builder.object.question_id) %>
+        <div class="card-panel row">
+          <h5 class="card-title"><%= question.title %></h5>
+          <div class="card-content">
+            <p><%= question.description %></p>
+          </div>
+          <%= builder.input :question_id, :as => :hidden %>
+          <div class="nested-fields">
+            <div class="input-field answer">
+              <span>Answer: </span>
+              <span><%= builder.select :answer_status, Answer::answer_statuses.keys %></span>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <div class="form-actions">
       <%= link_to "Back", audits_path, class: "btn grey darken-2" %>
       <%= f.button :submit %>
-    </div> 
-        <%= f.simple_fields_for :answers do |builder| %>
-        <% question = getQuestion(@questions, builder.object.question_id) %>
-        <%= question.title %>
-        <%= question.description %>
-        <%= builder.input :question_id, :as => :hidden %>
-        <div class="card-panel row nested-fields">
-          <div class="col s9 l11"><%= builder.select :answer_status, Answer::answer_statuses.keys %></div>
-        </div>
-          <% end %>  
+    </div>         
   <% end %>
 </div

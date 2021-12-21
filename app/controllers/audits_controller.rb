@@ -7,6 +7,7 @@ class AuditsController < ApplicationController
   
   def new
     checklist_id = session[:checklist_id]
+    @checlist = current_user.checklists.find(checklist_id)
     @questions = current_user.checklists.find(checklist_id).questions
     @audit = current_user.audits.build(attributes = {checklist_id: checklist_id})
     @audit.answers.build
@@ -16,7 +17,7 @@ class AuditsController < ApplicationController
     @audit = current_user.audits.build(audit_params)
     if @audit.save
       flash[:notice] = "Audit has been created"
-      redirect_to root_path
+      redirect_to audits_path
     else
       puts @audit.errors.full_messages
       render 'new'
@@ -24,6 +25,7 @@ class AuditsController < ApplicationController
   end
 
   def edit
+    @checlist = current_user.checklists.find(session[:checklist_id])
     @questions = current_user.audits.find(params[:id]).checklist.questions.select{ |question| question.answers.present? }
   end
   
@@ -44,7 +46,7 @@ class AuditsController < ApplicationController
   
   def choice_checklist
     if request.get?
-      @checklists = current_user.checklists.all
+      @checklists = current_user.checklists.select{ |checklist| checklist.questions.present? }
     else
 
       if params['/audits/choice_checklist'].values[0].present?

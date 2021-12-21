@@ -5,6 +5,7 @@
       <% if current_user.present? %>
         <li class="yellow-text"><%= current_user.email %></li> 
         <li><%= link_to "AuditList", audits_path %></li>
+        <li><%= link_to "CheckList", checklists_path %></li>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Sign In", new_user_session_path %></li>  

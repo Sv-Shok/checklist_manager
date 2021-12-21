@@ -6,15 +6,17 @@
 <div>
 <% @audits.each do |audit| %>
   <div class="card">
-    <div class="card-content">
+    <div class="card-content auditItem">
       <div class="card-title"><%= audit.checklist.title %></div>
-      <div class="card-text"><%= audit.updated_at %></div>
-      <%= link_to edit_audit_url(audit) do %>
+      <div class="card-text date"><%= format_date(audit.updated_at) %></div>
+      <div>
+        <%= link_to edit_audit_url(audit), class: "mr5" do %>
         <span class="btn-floating btn-large cyan mx3"><i class="material-icons">edit</i></span>
-      <% end %>
-      <%= link_to audit_path(audit),  method: :delete, data: { confirm: "Are you sure?" } do %>
-        <span class="btn-floating btn-large red mx3"><i class="material-icons">delete</i></span>
-      <% end %>
+        <% end %>
+        <%= link_to audit_path(audit),  method: :delete, data: { confirm: "Are you sure?" } do %>
+          <span class="btn-floating btn-large red mx3"><i class="material-icons">delete</i></span>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

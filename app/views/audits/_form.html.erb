@@ -1,22 +1,29 @@
 <div class="card-panel">
+  <h5><%= "checlist: #{@checlist.title}" %></h5>
+  <hr>
+  <h5 class="center">Questions</h5>
   <%=  simple_form_for @audit do |f| %>
-    <div class="form-actions">
-      <%= link_to "Back", root_path, class: "btn grey darken-2" %>
-      <%= f.button :submit %>
-    </div>  
+
     <% @questions.each do |question| %>
-          <%= question.title %>
-          <%= question.description %>   
+      <div class="card-panel row">
+        <h5 class="card-title"><%= question.title %></h5>
+        <div class="card-content">
+          <p><%= question.description %></p>
+        </div>
         <%= f.simple_fields_for :answers do |builder| %>
-        
           <%= builder.input :question_id, :as => :hidden, :input_html => { value: question.id }%>
-          <%# <%= render 'answer_fields', f: builder %>
-          <div class="card-panel row nested-fields">
-            <div class="input-field col s12">
-              <div class="col s9 l11"><%= builder.select :answer_status, Answer::answer_statuses.keys, selected: 3 %></div>
+          <div class="nested-fields">
+            <div class="input-field answer">
+              <span>Answer: </span>
+              <span><%= builder.select :answer_status, Answer::answer_statuses.keys %></span>
             </div>
           </div>
-          <% end %>
-      <% end %>   
+        <% end %>
+      </div>
+    <% end %>
+    <div class="form-actions">
+      <%= link_to "Back", audits_path, class: "btn grey darken-2" %>
+      <%= f.button :submit %>
+    </div>      
   <% end %>
 </div>

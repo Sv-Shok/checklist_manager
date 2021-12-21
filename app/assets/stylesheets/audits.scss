@@ -1,3 +1,26 @@
 // Place all the styles related to the audits controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.answer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  span:first-child {
+    margin-right: 10px;
+  }      
+}
+
+.auditItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .mr5 {
+    margin-right: 5px;
+  }
+  .date {
+    font-size: 16px;
+    color: slateblue;
+    font-weight: bold; 
+  }
+}
